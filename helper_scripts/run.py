@@ -1,8 +1,8 @@
 import csv
 
-filename = "export.csv"
+filename = "positions.csv"
 
-company_name = "Apple"
+company_name = "UnitedHealth Group"
 width = 150
 
 print("<h1>{}</h1>".format(company_name))
@@ -15,5 +15,9 @@ with open(filename, 'r') as csvfile:
 		rows.append(row)
 
 for row in rows:
-	if row[1] == company_name:
-		print('<img src="{}" width={} alt="{}" />'.format(row[6], str(width), row[0]))
+	if row[2] == company_name:
+		tags = row[4].split(',')
+		tags = map(str.strip, tags) 
+		is_board_member = "Board Member" in tags
+		if is_board_member:
+			print('<img src="{}" width={} alt="{}" />'.format(row[8], str(width), row[0]))
